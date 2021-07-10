@@ -1,0 +1,48 @@
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    padding: 0 48px 0 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leftside {
+    width: 60%;
+}
+.rightside {
+    text-align: center;
+}
+
+.leftside .herotext{ 
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--text-heading);
+}
+
+.image {
+    width: 70%;
+}
+ 
+ .action-btn {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2.625rem;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #F8FFE5;
+
+     background-color: var(--primary);
+     transition: 250ms;
+     border-radius: 2px;
+ }
+
+ .action-btn:hover {
+     background-color: var(--secondary);
+ }

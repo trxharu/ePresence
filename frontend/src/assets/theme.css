@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
+/* Imported fonts from google fonts (Light, Regular, SemiBold) */
+
+:root {
+    --bg-color: #fafffc;
+    --gray: #c2c2c2;
+    --primary: #00d355;
+    --secondary: #33FF85;
+
+    --text-heading: #141414;
+    --text-normal: #212121;
+    --text-sub: #363636;
+
+    --text-error: #cf173f;
+    --text-link: #0036ff;
+}
+
+/* reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+}
+
+.app {
+    background-color: var(--bg-color);
+}

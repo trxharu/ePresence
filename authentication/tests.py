@@ -9,7 +9,7 @@ class AuthTest(TestCase):
         response = self.client.get("/api")
         expected = response.content.decode("utf8")
         data = json.loads(expected)
-
+        print(expected)
         self.assertEqual(data["message"], "Welcome to E-Presence API.")
     
     def test_signup_api(self):

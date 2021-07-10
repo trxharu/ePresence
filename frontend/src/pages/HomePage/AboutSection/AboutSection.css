@@ -1,0 +1,19 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    padding: 0 48px 0 48px;
+    background-color: var(--primary);      
+}
+.center {
+  text-align: center;
+  color: var(--text-heading);  
+}
+.center > h2{
+  font-size: 2.25rem;
+  color: var(--text-heading);
+}
+
