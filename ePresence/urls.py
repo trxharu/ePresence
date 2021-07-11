@@ -14,11 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+
+from django.conf.urls.static import static
+from django.conf import settings
 from authentication import views as authRoute
+from dashboard import views as dashRoute
 
 urlpatterns = [
-    path('api', authRoute.api),
-    path('auth/signup', authRoute.signup),
+    path('auth/register', authRoute.signup),
     path('auth/login', authRoute.login),
-    path('auth/whoami', authRoute.decodeToken)
+    path('displayData', dashRoute.displayData),
+    path('dashboard', dashRoute.form),
+    path('userDetail', dashRoute.userDetail),
+    path('media', dashRoute.media)
 ]
+
+urlpatterns += static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)

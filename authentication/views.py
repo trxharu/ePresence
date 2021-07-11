@@ -3,57 +3,80 @@ from db.dbclient import getDbInstance
 
 from utils.jsonparser import parseJSON, JsonStringify
 from utils.jsonwebtoken import generateToken, verifyToken
-from utils.hash import generateHashedKey, validateHashedKey
+from utils.hash import generateHashedKey, checkHashedKey
 
-
-# Create your views here.
-def api(request):
-    response = HttpResponse()
-    response.headers = { "Content-Type": "application/json" }
-    data = {
-        "message": "Welcome to E-Presence API."
-    }
-    response.write(JsonStringify(data))
-    return response
 
 def signup(request):
     payload = parseJSON(request.body)
-
-    hashedPass = generateHashedKey(payload["password"])
-
-    user = {
-        "email": payload["email"],
-        "password": hashedPass 
-    }
-
-    users = getDbInstance().users
-    userId = users.insert_one(user).inserted_id
-
     res = HttpResponse()
     res.headers = { "Content-Type": "application/json" }
+    # get users table or collection
+    users = getDbInstance().users
+
+    user = users.find_one({ "email": payload["email"] })
+    
+    if user != None:
+        data = {
+            "status": False,
+            "message": "Email already exists."
+        }
+        res.write(JsonStringify(data))
+        return res
+
+    hashedPass = generateHashedKey(payload["password"])
+    
+    new_user = {
+        "email": payload["email"],
+        "password": hashedPass
+    }
+    
+    inserted_id = users.insert_one(new_user).inserted_id
+    
+    token = generateToken({ "email": payload["email"] })
     data = {
-        "user_id": str(userId),
-        "message": "User Inserted."
+        "status": True,
+        "token": token,
+        "message": "New User added."
     }
     res.write(JsonStringify(data))
     return res
 
 def login(request):
     payload = parseJSON(request.body)
+    res = HttpResponse()
+    res.headers = { "Content-Type": "application/json" }
 
     users_coll = getDbInstance().users
     user = users_coll.find_one({ "email": payload["email"]})
 
-    checkedPass = validateHashedKey(payload["password"], user["password"])
+    # Checking for user email
+    if user == None:
+        data = {
+            "status": False,
+            "message": "User email does not exists."
+        }
+        res.write(JsonStringify(data))
+        return res
+    
+    checkedPass = checkHashedKey(payload["password"], user["password"])
+
+    # Checking for password and generating token
+    token = None
     
     if checkedPass:
         token = generateToken({ "email": str(user["email"]) })
     else:
-        token = None
+        # if password incorrect return below response
+        data = {
+            "status": False,
+            "user_email": str(user["email"]),
+            "message": "Email or Password is incorrect."
+        }
+        res.write(JsonStringify(data))
+        return res
 
-    res = HttpResponse()
-    res.headers = { "Content-Type": "application/json" }
     data = {
+        "status": True,
         "user_email": str(user["email"]),
         "token": token,
         "message": "Login Successful."

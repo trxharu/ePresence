@@ -1,11 +1,11 @@
 import React from "react";
 
-import Header from "../../comps/Header";
+import Header from "./Header";
 import HeroSection from "./HeroSection";
 import AboutSection from "./AboutSection";
 import FeatureSection from "./FeatureSection";
 import Benefits from "./Benefits";
-import Footer from "../../comps/Footer";
+import Footer from "./Footer";
 
 import "./style.css";
 

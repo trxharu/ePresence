@@ -1,0 +1,64 @@
+.banner{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url(logo.jpg);
+    background-size: cover;
+}
+#section0{
+    height: 100vh;
+    background:linear-gradient(-45deg,#EE7752 , #E73CE7,#23A6D2,#23D5AB);
+    background-size: 400% 400%;
+    position: relative;
+    animation: changer 10s ease-in-out infinite;
+}
+#section1{
+    height: 100vh;
+    background:linear-gradient(-45deg,#EE7752 , #E73CE7,#23A6D2,#23D5AB);
+    background-size: 400% 400%;
+    position: relative;
+    animation: changer 10s ease-in-out infinite;
+}
+#section2{
+    height: 100vh;
+    background:linear-gradient(-45deg,#EE7752 ,#23D5AB, #E73CE7,#026a8d);
+    background-size: 400% 400%;
+    position: relative;
+    animation: changer 10s ease-in-out infinite;
+}
+#section3{
+    height: 100vh;
+    background:linear-gradient(-45deg,#E73CE7,#EE7752,#23D5AB,#026a8d);
+    background-size: 400% 400%;
+    position: relative;
+    animation: changer 10s ease-in-out infinite;
+}
+@keyframes changer{
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
+}
+
+h1{
+    font-size: 1rem;
+    color: #ffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border : 1px solid #ffff;
+    position: absolute;
+    top: 40%;
+    left:30%;
+    transform: translate(-50% , -50%);
+    padding: 2rem 2rem;
+}
+#footer{
+    height: 30vh;
+    position: relative;
+    background: #0000;   
+}
